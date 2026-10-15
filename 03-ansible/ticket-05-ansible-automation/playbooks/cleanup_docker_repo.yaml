@@ -1,0 +1,18 @@
+---
+# One-off cleanup of stale Docker apt sources (fixes "Failed to update apt cache").
+# Kept separate from install_docker.yaml so the install playbook stays idempotent.
+- name: Remove stale Docker apt source files
+  hosts: all
+  become: true
+  tasks:
+    - name: Remove old Docker source definitions
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: absent
+      loop:
+        - /etc/apt/sources.list.d/docker.sources
+        - /etc/apt/sources.list.d/docker.list
+
+    - name: Refresh the apt cache
+      ansible.builtin.apt:
+        update_cache: true
