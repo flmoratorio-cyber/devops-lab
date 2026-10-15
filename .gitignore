@@ -1,0 +1,26 @@
+# Secrets / keys - never commit
+*.ppk
+*.pem
+*.key
+id_rsa*
+id_ed25519*
+lab_master*
+.vault_pass
+*.vault
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
+terraform.tfvars
+*.auto.tfvars
+# keep .terraform.lock.hcl committed
+
+# Ansible
+*.retry
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
